@@ -37,7 +37,7 @@ define in `package.json` ’s scripts:
 * watch:all
 * postinstall
 
-for reference: [npm-build-boilerplate](https://github.com/shenqihui/npm-build-boilerplate)
+Reference: [npm-build-boilerplate](https://github.com/shenqihui/npm-build-boilerplate)
 
 
 ## Help
