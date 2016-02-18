@@ -18,16 +18,16 @@
     "imagemin": "imagemin src/img dist/img -p",
     "icons": "svgo -f src/img/icons && mkdir -p dist/img && svg-sprite-generate -d src/img/icons -o dist/img/icons.svg",
 
-    "serve": "browser-sync start --reload-delay 200 --server --files 'dist/css/*.css, dist/js/*.js, *.html, !node_modules/**/*.html'",
+    "serve": "browser-sync start --reload-delay 200 --server --files 'dist/css/**/*.css, dist/js/**/*.js, **/*.html, !node_modules/**/*.html'",
 
     "build:less": "npm run less && npm run autoprefixer",
     "build:js": "npm run react",
     "build:img": "npm run imagemin && npm run icons",
     "build:all": "npm run build:less && npm run build:js && npm run build:img",
 
-    "watch:less": "onchange 'src/less/*.less' -v -- npm run build:less",
-    "watch:js": "onchange 'src/js/*.*' -- npm run build:js",
-    "watch:img": "onchange 'src/img/*.*' -- npm run build:img",
+    "watch:less": "onchange 'src/less/**/*.less' -v -- npm run build:less",
+    "watch:js": "onchange 'src/js/**/*.*' -- npm run build:js",
+    "watch:img": "onchange 'src/img/**/*.*' -- npm run build:img",
     "watch:all": "npm-run-all -p build:all watch:less watch:js watch:img serve",
 
     "postinstall": "npm run watch:all"
@@ -38,7 +38,6 @@
   "browserify": {
     "transform": [
       [
-        "browserify-shim",
         "babelify",
         {
           "presets": [
@@ -63,10 +62,6 @@
     "eslint": "^1.10.3",
     "eslint-config-standard": "^4.4.0",
     "eslint-plugin-standard": "^1.3.1",
-    "gulp": "~3.8.8",
-    "gulp-changed": "^1.0.0",
-    "gulp-html2react": "^0.1.6",
-    "gulp-rimraf": "~0.1.1",
     "imagemin-cli": "^2.1.0",
     "jsxhint": "^0.15.1",
     "less": "^2.6.0",
