@@ -4,7 +4,7 @@ var Title = require('./components/title');
 
 React.render(
   React.createElement(Title, {
-  name: 'John Cena'
+    name: 'Github'
   }),
   document.getElementById('react')
 );

@@ -26,18 +26,18 @@ gulp.task('browserSync', function() {
 });
 
 gulp.task('react', function() {
-  return gulp.src('src/javascripts/templates/**/*.html')
+  return gulp.src('src/js/templates/**/*.html')
   .pipe(html2react())
-  .pipe(gulp.dest('temp/javascripts/templates'));
+  .pipe(gulp.dest('temp/js/templates'));
 });
 
 gulp.task('copy_js', function() {
-  var files = ['src/javascripts/**/*.js'];
-  return gulp.src(files).pipe(gulp.dest('temp/javascripts'));
+  var files = ['src/js/**/*.js'];
+  return gulp.src(files).pipe(gulp.dest('temp/js'));
 });
 
 gulp.task('copy', ['copy_js'], function() {
-  var files = ['src/**/*', '!src/javascripts', '!src/javascripts/**/*'];
+  var files = ['src/**/*', '!src/js', '!src/js/**/*'];
   var DEST = 'dist';
 
   return gulp.src(files).pipe(changed(DEST)).pipe(gulp.dest(DEST));
@@ -45,15 +45,15 @@ gulp.task('copy', ['copy_js'], function() {
 
 // using vinyl-source-stream:
 gulp.task('browserify', ['copy', 'react'], function() {
-  var bundleStream = browserify('./temp/javascripts/app.js').transform(debowerify).bundle();
+  var bundleStream = browserify('./temp/js/app.js').transform(debowerify).bundle();
   bundleStream
-  .pipe(source('./javascripts/app.js'))
+  .pipe(source('./js/app.js'))
   .pipe(gulp.dest('./dist/'));
 });
 
 gulp.task('default', ['browserify', 'browserSync'], function() {
   gulp.watch('src/*.html', ['copy']);
-  gulp.watch('src/stylesheets/**/*', ['copy']);
+  gulp.watch('src/css/**/*', ['copy']);
 
-  gulp.watch('src/javascripts/**/*', ['browserify']);
+  gulp.watch('src/js/**/*', ['browserify']);
 });

@@ -1,9 +1,10 @@
+'use strict';
+
 var React = require('react');
-var titleTemplate = require('.././templates/title');
 
 var Title = React.createClass({
   render: function() {
-    return titleTemplate.call(this);;
+    return <p>{this.props.name}</p>;
   }
 });
 

@@ -1,17 +1,81 @@
 {
-	"name": "package",
-	"version": "0.0.0",
-	"devDependencies": {
-		"gulp": "~3.8.8",
-		"browser-sync": "~2.6.9",
-		"debowerify": "^0.8.2",
-		"gulp-changed": "^1.0.0",
-		"gulp-html2react": "^0.1.6",
-		"gulp-rimraf": "~0.1.1",
-		"vinyl-source-stream": "~1.0.0",
-		"browserify": "~6.0.3"
-	},
-	"dependencies": {
-		"react": "~0.13.2"
-	}
+  "name": "my_github",
+  "version": "0.1.0",
+  "description": "My github page",
+  "author": "shenqihui <shenqihui0920@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "clean": "rm -f dist/{css/*,js/*,img/*}",
+    "autoprefixer": "postcss -u autoprefixer -r dist/css/*",
+    "less": "for file in src/less/*.less; do lessc --strict-imports $file dist/css/`basename -s .less $file`.css ; done",
+    "lint": "eslint src/js",
+    "jsxhint": "jsxhint src/js",
+    "react": "mkdir -p dist/js/ && browserify -t [ babelify --presets [ react ] ] src/js/app.js -o dist/js/app.js",
+    "uglify": "mkdir -p dist/js && rm -rf dist/js/app.min.js && uglifyjs dist/js/*.js -m -c -o dist/js/app.min.js",
+    "imagemin": "imagemin src/img dist/img -p",
+    "icons": "svgo -f src/img/icons && mkdir -p dist/img && svg-sprite-generate -d src/img/icons -o dist/img/icons.svg",
+    "serve": "browser-sync start --server --files 'dist/css/*.css, dist/js/*.js, *.html, !node_modules/**/*.html'",
+    "build:less": "npm run less && npm run autoprefixer",
+    "build:js": "npm run react && npm run jsxhint && npm run uglify",
+    "build:img": "npm run imagemin && npm run icons",
+    "build:all": "npm run build:less && npm run build:js && npm run build:img",
+    "watch:less": "onchange 'src/less/*.less' -v -- npm run build:less",
+    "watch:js": "onchange 'src/js/*.*' -- npm run build:js",
+    "watch:img": "onchange 'src/img/*.*' -- npm run build:img",
+    "watch:all": "npm-run-all -p build:all watch:less watch:js watch:img serve",
+    "postinstall": "npm run watch:all"
+  },
+  "browser": {
+    "react": "react"
+  },
+  "browserify": {
+    "transform": [
+      [
+        "browserify-shim",
+        "babelify",
+        {
+          "presets": [
+            "react"
+          ]
+        }
+      ]
+    ]
+  },
+  "browserify-shim": {
+    "react": "global:React",
+    "react-dom": "global:ReactDOM",
+    "jquery": "global:$"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.3.1",
+    "babel-preset-react": "^6.5.0",
+    "babelify": "^7.2.0",
+    "browser-sync": "^2.11.1",
+    "browserify": "~6.0.3",
+    "debowerify": "^0.8.2",
+    "eslint": "^1.10.3",
+    "eslint-config-standard": "^4.4.0",
+    "eslint-plugin-standard": "^1.3.1",
+    "gulp": "~3.8.8",
+    "gulp-changed": "^1.0.0",
+    "gulp-html2react": "^0.1.6",
+    "gulp-rimraf": "~0.1.1",
+    "imagemin-cli": "^2.1.0",
+    "jsxhint": "^0.15.1",
+    "less": "^2.6.0",
+    "node-sass": "^3.4.2",
+    "npm-run-all": "^1.5.1",
+    "onchange": "^2.0.0",
+    "parallelshell": "^2.0.0",
+    "postcss-cli": "^2.4.0",
+    "react": "^0.13.3",
+    "react-dom": "^0.14.7",
+    "svg-sprite-generator": "0.0.7",
+    "svgo": "^0.6.1",
+    "uglify-js": "^2.6.1",
+    "vinyl-source-stream": "~1.0.0"
+  },
+  "dependencies": {
+    "react": "~0.13.2"
+  }
 }
