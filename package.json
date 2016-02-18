@@ -1,0 +1,17 @@
+{
+	"name": "package",
+	"version": "0.0.0",
+	"devDependencies": {
+		"gulp": "~3.8.8",
+		"browser-sync": "~2.6.9",
+		"debowerify": "^0.8.2",
+		"gulp-changed": "^1.0.0",
+		"gulp-html2react": "^0.1.6",
+		"gulp-rimraf": "~0.1.1",
+		"vinyl-source-stream": "~1.0.0",
+		"browserify": "~6.0.3"
+	},
+	"dependencies": {
+		"react": "~0.13.2"
+	}
+}
