@@ -4,6 +4,7 @@ This is my react app template.
 A collection of packages that build a react website using `npm scripts`.
 
 * [Dependent](#Dependent)
+* [Quick start](#Quick start)
 * [Available tasks](#available-tasks)
 * [Help](#Help)
 
@@ -11,6 +12,14 @@ A collection of packages that build a react website using `npm scripts`.
 
 * node
 * npm
+
+## Quick start
+
+```shell
+git clone git@github.com:shenqihui/npm-build-boilerplate.git
+cd npm-build-boilerplate
+npm install
+```
 
 
 ## Available tasks
