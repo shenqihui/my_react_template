@@ -16,8 +16,8 @@ A collection of packages that build a react website using `npm scripts`.
 ## Quick start
 
 ```shell
-git clone git@github.com:shenqihui/npm-build-boilerplate.git
-cd npm-build-boilerplate
+git clone git@github.com:shenqihui/my_react_template.git
+cd my_react_template
 npm install
 ```
 
