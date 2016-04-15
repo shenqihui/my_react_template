@@ -1,0 +1,16 @@
+{
+    "SublimeLinter":{
+        "linters":{
+            "eslint":{
+                "@disable":true,
+                "excludes":[
+                    "dist/*",
+                    "node_modules/*"
+                ]
+            },
+            "jshint":{
+                "@disable":true
+            }
+        }
+    }
+}
